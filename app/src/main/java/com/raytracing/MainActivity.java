@@ -14,7 +14,6 @@ import android.util.Log;
 import android.graphics.PixelFormat;
 
 import java.util.Random;
-import java.util.*;
 
 
 
@@ -31,12 +30,19 @@ public class MainActivity extends Activity
     }
 
 	@Override
-	public boolean moveTaskToBack(boolean nonRoot)
+	protected void onResume()
 	{
 		// TODO: Implement this method
-		return super.moveTaskToBack(nonRoot);
-		
+		super.onResume();
 	}
+
+	@Override
+	protected void onPause()
+	{
+		// TODO: Implement this method
+		super.onPause();
+	}
+	
 	
 
 
@@ -49,7 +55,7 @@ public class MainActivity extends Activity
 		SurfaceHolder holder;
 		
 		double aspect_ratio = 16.0/9.0;
-		int image_width = 1080; 
+		int image_width = 400; 
 		int image_height = (int)(image_width / aspect_ratio);
 		int sampler_per_pixel = 16;
 		int max_depth = 32;
@@ -213,7 +219,7 @@ public class MainActivity extends Activity
 			Vec3 looklength = new Vec3(lookfrom.e[0]-lookat.e[0],lookfrom.e[1]-lookat.e[1],lookfrom.e[2]-lookat.e[2]);
 			
 			double dist_to_focus = looklength.lenght();
-			double aperture = 0.2;
+			double aperture = 0.1;
 			
 			camera= new Camera(lookfrom,lookat ,vup , 20, aperture, dist_to_focus,aspect_ratio);
 			
@@ -222,7 +228,7 @@ public class MainActivity extends Activity
 			Material ground_material = new Lambertian(new ColorV(0.8, 0.8, 0.0));
 			Material center_material = new Lambertian(new ColorV(0.8,0.8,0.8/*0.7, 0.3, 0.3*/));
 			Material left_material = new Dielectric(1.5);
-			Material right_material = new Metal(new ColorV(0.8, 0.7, 0.5), 0.1);
+			Material right_material = new Metal(new ColorV(1.0, 0.8, 0.4), 0.1);
 			
 			Sphere ground = new Sphere(new PointV(0, -100.5, -1), 100, ground_material);
 			Sphere diffuseSphere = new Sphere(new PointV(0.0, 0.0, -1.0), 0.5, center_material);
@@ -283,7 +289,7 @@ public class MainActivity extends Activity
 				this.getHolder().unlockCanvasAndPost(canvas);
 			}
 			canvas = this.getHolder().lockCanvas();
-			canvas.setDensity(1300);
+			canvas.setDensity(1300); 
 			canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 			canvas.drawBitmap(renderImage, 0, 0, null);
 			this.getHolder().unlockCanvasAndPost(canvas);
