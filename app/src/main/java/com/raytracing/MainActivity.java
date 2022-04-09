@@ -34,6 +34,7 @@ public class MainActivity extends Activity
 	{
 		// TODO: Implement this method
 		super.onResume();
+		
 	}
 
 	@Override
@@ -41,6 +42,7 @@ public class MainActivity extends Activity
 	{
 		// TODO: Implement this method
 		super.onPause();
+		renderView.run();
 	}
 	
 	
@@ -225,10 +227,10 @@ public class MainActivity extends Activity
 			
 			world = new Hittable_list();
 			
-			Material ground_material = new Lambertian(new ColorV(0.8, 0.8, 0.0));
-			Material center_material = new Lambertian(new ColorV(0.8,0.8,0.8/*0.7, 0.3, 0.3*/));
+			Material ground_material = new Lambertian(new ColorV(0.8, 0.8, 0.8));
+			Material center_material = new Lambertian(new ColorV(0.9,0.9,1.0/*0.7, 0.3, 0.3*/));
 			Material left_material = new Dielectric(1.5);
-			Material right_material = new Metal(new ColorV(1.0, 0.8, 0.4), 0.1);
+			Material right_material = new Metal(new ColorV(1.0, 0.64, 0.1), 0);
 			
 			Sphere ground = new Sphere(new PointV(0, -100.5, -1), 100, ground_material);
 			Sphere diffuseSphere = new Sphere(new PointV(0.0, 0.0, -1.0), 0.5, center_material);
@@ -282,10 +284,13 @@ public class MainActivity extends Activity
 						
 					}
 					renderImage.setPixel(x,y,WriteColor.writeColor(pixelColor,sampler_per_pixel));
+					
 				}
 				canvas = this.getHolder().lockCanvas();
+				canvas.setDensity(1300);
 				canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 				canvas.drawText(Double.toString(j),10,800,paint);
+				canvas.drawBitmap(renderImage, 0, 0, null);
 				this.getHolder().unlockCanvasAndPost(canvas);
 			}
 			canvas = this.getHolder().lockCanvas();
