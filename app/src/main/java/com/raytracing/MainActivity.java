@@ -191,7 +191,7 @@ public class MainActivity extends Activity
 			double aspect_ratio = 16.0/9.0;
 			int image_width = 1440;
 			int image_height = (int)(image_width / aspect_ratio);
-			int sampler_per_pixel = 64;
+			int sampler_per_pixel = 32;
 			int max_depth = 8;
 			
 			Paint paint = new Paint();
