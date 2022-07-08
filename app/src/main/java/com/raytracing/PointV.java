@@ -6,4 +6,8 @@ public class PointV extends Vec3
 	PointV(double e0, double e1, double e2){
 		super(e0,e1,e2);
 	}
+	PointV(Vec3 v)
+	{
+		super(v.e[0], v.e[1], v.e[2]);
+	}
 }

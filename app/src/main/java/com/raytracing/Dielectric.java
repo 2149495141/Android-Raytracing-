@@ -23,11 +23,11 @@ public class Dielectric implements Material
 		boolean cannot_refract = refraction_ratio*sin_theta > 1.0;
 		Vec3 direction = new Vec3();
 		
-		if(/*cannot_refract || */reflectance(cos_theta, refraction_ratio) > Rtweekend.random_double())
+		if(cannot_refract || reflectance(cos_theta, refraction_ratio) > Rtweekend.random_double())
 			direction = Vec3.reflect(unit_direction, rec.normal);
 		else
 			direction = Vec3.refract(unit_direction, rec.normal, refraction_ratio);
-		//Vec3 refracted = Vec3.refract(unit_direction, rec.normal, refraction_ratio);
+		
 		mv.scattered = new Ray(rec.p, direction);
 		
 		return true;

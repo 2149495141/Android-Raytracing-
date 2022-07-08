@@ -4,19 +4,17 @@ import android.graphics.Color;
 
 public class Vec3
 {
-	public double[] e;
+	double[] e = new double[3];
 	
 	Vec3()
 	{
-		//e[0] = 0; e[1] = 0; e[2] = 0;
-		double[] e = {0.0, 0.0, 0.0};
-		this.e = e;
+		e[0] = 0; e[1] = 0; e[2] = 0;
+		//e = {0.0, 0.0, 0.0};
 	}
 	
 	Vec3(double e0, double e1, double e2)
 	{
-		double[] e = {e0,e1,e2};
-		this.e = e;
+		e[0] = e0; e[1] = e1; e[2] = e2;
 	}
 	
 	double x(){ return e[0];}
@@ -95,7 +93,7 @@ public class Vec3
 		return new Vec3(u.e[0] * v.e[0], u.e[1] * v.e[1], u.e[2] * v.e[2]);
 	}
 	
-	static final Vec3 Multiply(float t, Vec3 v)
+	static final Vec3 Multiply(double t, Vec3 v)
 	{
 		return new Vec3(t*v.e[0], t*v.e[1], t*v.e[2]);
 	}
@@ -206,4 +204,6 @@ public class Vec3
 			return p;
 		}
 	}
+	
+	
 }

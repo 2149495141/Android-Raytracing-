@@ -7,6 +7,7 @@ public class hit_record
 		Material mat_ptr;
 		
 		double t;
+		double u,v;//表面坐标
 		boolean front_face;
 		hit_record()
 		{

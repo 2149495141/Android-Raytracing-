@@ -53,5 +53,12 @@ public class Sphere implements hittable
 		
 		return true;
 	}
+
+	@Override
+	public boolean bounding_box(double time0, double time1, bbox_var out_box)
+	{
+		// TODO: Implement this method
+		return false;
+	}
 	
 }

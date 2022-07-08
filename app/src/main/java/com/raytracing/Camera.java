@@ -19,7 +19,7 @@ public class Camera
 		double h = Math.tan(theta/2);
 		double viewport_height = 2.0*h;
 		double viewport_width = aspect_ratio * viewport_height;
-		double focal_length = 1.0;
+		//double focal_length = 1.0;
 
 		
 		w = Vec3.unit_vector(Vec3.Minus(lookfrom,lookat));

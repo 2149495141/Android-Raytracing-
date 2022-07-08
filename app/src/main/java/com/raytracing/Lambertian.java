@@ -2,12 +2,15 @@ package com.raytracing;
 
 public class Lambertian implements Material
 {
-	ColorV albedo;
+	Textrue albedo;
 	Lambertian(ColorV a)
+	{
+		albedo = new SolidColor(a);
+	}
+	Lambertian(Textrue a)
 	{
 		albedo = a;
 	}
-	
 	
 	@Override
 	public boolean scatter(Ray r_in, hit_record rec, mat_var mv /*ColorV attenuation, Ray scattered*/)
@@ -22,7 +25,7 @@ public class Lambertian implements Material
 			scatter_direction = rec.normal;
 						
 		mv.scattered = new Ray(rec.p, scatter_direction);
-		mv.attenuation = albedo;
+		mv.attenuation = albedo.value(rec.u,rec.v,rec.p);
 		
 		return true;
 	}
